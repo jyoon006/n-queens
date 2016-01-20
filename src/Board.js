@@ -79,7 +79,14 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      //if the count of not 0 in the array is greater than 1, then it has a conflict
+      var counter = 0;
+      _.each(this.get(rowIndex), function(item) {
+        if(item !== 0) {
+          counter++;
+        }
+      });
+      return counter > 1 ? true: false; // fixme
     },
 
     // test if any rows on this board contain conflicts
