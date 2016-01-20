@@ -111,12 +111,29 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      var counter = 0;
+      _.each(this.attributes, function(item) {
+        if(item.constructor === Array) {
+          if(item[colIndex] !== 0) {
+            counter++;
+          }
+        }
+      });
+      return counter > 1 ? true : false;
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      var result = false;
+      var context = this;
+      _.each(this.attributes, function(item, index){
+        if(Array.isArray(item)){
+          if(context.hasColConflictAt(index) === true){
+            result = true;
+          }
+        }
+      })
+      return result; // fixme
     },
 
 
