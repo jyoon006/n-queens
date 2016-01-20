@@ -91,7 +91,17 @@
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      var result = false;
+      var context = this;
+      _.each(this.attributes, function(item, index){
+        if(Array.isArray(item)){
+          if(context.hasRowConflictAt(index)) {
+            result = true;
+          }
+        }
+      });
+      
+      return result; // fixme
     },
 
 
