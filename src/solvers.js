@@ -15,31 +15,21 @@
 var context = window.Board.prototype;
 window.findNRooksSolution = function(n) {
   
-  var board = new Board({'n':n})
-  console.log('board', board.attributes[0])
-  // console.log('board', board)
-  // console.log('board proto' , board.__proto__.togglePiece)
-  // console.log('board attributes' , board.attributes);
-  board.togglePiece(0,0)
-  console.log('board after', board.attributes[0])
-  //var x = board.__proto__.togglePiece(0,0);
-  //console.log('last console', x);
-  //context.togglePiece(0, 0);
-  //console.log(matrix);
-  //n = 4;
-  /* solution =
-  [ [1, 0, 0, 0]
-    [0, 1, 0, 0]
-    [0, 0, 1, 0]
-    [0, 0, 0, 1] ]
-  */
+  var board = new Board({'n':n});
 
-  var solution = matrix; //fixme
-
-  for(var i = 0; i < n; i++) {
-
+  var xStart = 0;
+  var yStart = 0;
+  for(var y = 0; y < n; y++) {
+    for(var x = 0; x < n; x++) {
+      board.togglePiece(y, x); //toggling at starting index
+      if(board.hasAnyRooksConflicts()) {
+        board.togglePiece(y, x);
+      }
+      
+    }
   }
-
+  var matrix = board.makeMatrix(board.attributes)
+  var solution = matrix;
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
 };
