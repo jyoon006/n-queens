@@ -78,6 +78,15 @@
     // --------------------------------------------------------------
     //
     // test if a specific row on this board contains a conflict
+    makeMatrix: function(boardObject){
+      return _.reduce(this.attributes, function(accumulator, value){
+        if (Array.isArray(value)){
+          accumulator.push(value)
+        }
+        return accumulator
+      },[])
+    },
+
     hasRowConflictAt: function(rowIndex) {
       //if the count of not 0 in the array is greater than 1, then it has a conflict
       var counter = 0;
