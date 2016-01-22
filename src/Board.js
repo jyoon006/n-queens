@@ -160,16 +160,24 @@
           arrayHolder.push(item);
         }
       });
-      for( var i = 0, j = majorDiagonalColumnIndexAtFirstRow; i < arrayHolder.length; i++, j++ ){
+
+      
+      for (var a = 0; a < arrayHolder.length; a++){
+        counter = 0
+      for( var i = a, j = majorDiagonalColumnIndexAtFirstRow; i < arrayHolder.length; i++, j++ ){
         if (arrayHolder[i][j] === 1){
           counter++;
         }
       }
-
       if (counter > 1){
-        result = true;
+         result = true;
       }
+    }
+      // if (counter > 1){
+      //   result = true;
+      // }
       return result;
+
     },
     
 
@@ -198,19 +206,25 @@
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
       var counter = 0;
       var arrayHolder = [];
+      var result = false;
       _.each(this.attributes, function(item) {
         if(item.constructor === Array) {
           arrayHolder.push(item);
         }
       }); 
-          for(var i = 0, j = minorDiagonalColumnIndexAtFirstRow; i < arrayHolder.length; i++, j--) {
+         for (var a = 0; a < arrayHolder.length; a++){
+          counter = 0
+          for(var i = a, j = minorDiagonalColumnIndexAtFirstRow; i < arrayHolder.length; i++, j--) {
             if(arrayHolder[i][j] === 1) {
               counter++;
             }
         
           }
-      
-      return counter > 1 ? true: false; // fixme
+          if (counter > 1){
+         result = true;
+      }
+      }
+      return result; // fixme
     },
 
     // test if any minor diagonals on this board contain conflicts
